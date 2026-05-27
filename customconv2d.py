@@ -10,6 +10,26 @@ Original file is located at
 import numpy as np
 
 def conv2d(input, kernel, stride=1, padding=0):
+    """
+    Performs 2D convolution operation on input image with given kernel.
+
+    Args:
+        input: 2D numpy array representing the input image
+        kernel: 2D numpy array representing the convolution kernel
+        stride: Step size for sliding the kernel (default: 1)
+        padding: Number of pixels to pad around input (default: 0)
+
+    Returns:
+        2D numpy array representing the output feature map
+    """
+    # Input validation
+    if stride < 1:
+        raise ValueError("Stride must be at least 1")
+    if padding < 0:
+        raise ValueError("Padding must be non-negative")
+    if input.ndim != 2 or kernel.ndim != 2:
+        raise ValueError("Input and kernel must be 2D arrays")
+
     if padding > 0:
         input = np.pad(input, ((padding, padding), (padding, padding)), mode='constant')
 
